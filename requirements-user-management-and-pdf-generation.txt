@@ -1,0 +1,9 @@
+csv
+cryptography
+pexpect
+pillow
+pycryptodome
+pyotp
+pypdf
+reportlab
+sqlite3

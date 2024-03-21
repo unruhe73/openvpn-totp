@@ -1,0 +1,3 @@
+pyotp
+pycryptodome
+sqlite3

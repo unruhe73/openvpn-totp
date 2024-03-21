@@ -1,0 +1,29 @@
+{
+  "totp": {
+    "pdf_title": "Default VPN Access",
+    "access_name": "DefaultVPNAccess",
+    "issuer_name": "DefaultVPN",
+    "filename_prefix": "default_vpn_security"
+  },
+  "mail": {
+    "smtp_server": {
+      "host": "",
+      "port": 465
+    },
+    "sender": {
+      "name": "",
+      "email": ""
+    },
+    "email": {
+      "subject": "credenziali accesso VPN",
+      "body_template": "Gentile DESTINATARIO,\nIn allegato troverai un file ZIP protetto da password e contenente due file. Quello con estensione .OVPN rappresenta la configurazione della VPN e va importato nel client di accesso alla VPN, ovvero OpenVPN GUI. Il secondo file presente nel file ZIP è un file PDF protetto dalla stessa password del file ZIP. In esso vi sono le credenziali per l'accesso alla VPN: username, password e un codice QR.\n\nDel codice QR ne deve essere fatta, una tantum, scansione con una app di autenticazione tipo Twilio Authy o Google Authenticator o similari. La scansione permette di salvare la chiave di generazione del codice OTP che cambia ogni 60 secondi.\n\nQuindi, per riepilogare, l'accesso alla VPN è garantito da: username, password e codice OTP generato al momento dalla app di autenticazione.\n\nLa password per aprire il file ZIP (e quindi anche il file PDF contenuto nel file ZIP) ti sarà fornita in modo separato da questa e-mail.\n\nGrazie per la tua collaborazione,\nl'amministratore di Sistema."
+    }
+  },
+  "config": {
+    "config_base_dir": ["openvpn"],
+    "config_users_dir": ["openvpn", "users"],
+    "config_ovpn_dir": ["openvpn", "client"],
+    "zip_dir": ["users_files", "zip"],
+    "pdf_dir": ["users_files", "pdf"]
+  }
+}
