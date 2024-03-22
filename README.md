@@ -33,21 +33,27 @@ In this file you can define the IP address of the remote server needed to the cl
 OPENVPN_NETWORK and OPENVPN_NETMASK is the OpenVPN network and netmask that is the network needed to the VPN to work. Avoid it conflict with your router and local LAN network.
 
 **openvpn_users**
+
 In this file you have the username list. This is useful if you know exactly the users of your VPN.
 
 **routes**
+
 In this file you have to specify the routes for your VPN: users connecting to the VPN which networks can reach.
 
 **server.conf**
+
 In this file you have the OpenVPN server configuration that's going to be merged with **routes** and **environment** files.
 
 **users.csv**
+
 In this file you can associate, in a CSV format, username with real name and email of the users. This is not really necessary, but if you specify this information you can auto generate and send emails with the information to access to the VPN to the users you specify. The `sent_email` field tells if the email has been sent or not. If the value is **0** than the email will be sent if you're going to execute the send email python script, if it's **1** no email for this user.
 
 **vars**
+
 In this file you define the data of the Certification Authority and how many days the CA is valid and after how many days a client certificate's expiring.
 
 **vpn_configuration.json**
+
 In this file you have some more configuration. You can find the SMTP server parameters. You don't need them if you don't want to send emails using the script. The **totp** section defines the data you're going to specify when the QR code to scan and add to an Authenticator app is generated. It's needed. I suggest to let unchanged the **config** section. With the *default* configuration you're going to have an **openvpn** directory to copy to the server as it is, except for the **openvpn/client** one where you have to *OVPN* files, the client files to use to connect to the VPN, but you need just to send the ZIP file to the user. The ZIP file's containing the *OVPN* file and the *PDF* file containing the credential to access to the VPN: username, password and QR code. The *ZIP* and *PDF* file is protected from a password. The same password. More details later.
 
 **Creating the CA and server and client certificates**
