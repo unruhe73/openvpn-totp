@@ -92,11 +92,7 @@ where *salt1* and *salt2* are random Fermat keys. Only if the user inser the cor
 
 Once certificates has been created you have to look for files to send to the users into the **users_file**. In this directory you're getting two subdirectories:
 
-`zip`
-
-and 
-
-`pdf`
+`zip` and `pdf`
 
 If you didn't configure the *mail* session into the file **vpn_configuration.json** and you won't use the `send_email.py` python script but you want to send an e-mail from your favourite e-mail client you need to get the ZIP and PDF password from the file **pdf_passwords_users_files.txt** into the **pdf** directory and send just the ZIP related file to the user. The ZIP file is, of course, into the **zip** directory.
 
