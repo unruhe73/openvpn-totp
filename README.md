@@ -69,7 +69,7 @@ Here what need to be customized:
     set_var EASYRSA_CERT_EXPIRE     1095
     set_var EASYRSA_NS_COMMENT      "Default Certificate Authority"
 
-This use a 2048 RSA key for the certificates. CA expires in 20 years (7500 days) and the certificate it generates expires in 3 years.
+In this configuration certificates use a 2048 RSA key, CA expires in 20 years (7500 days) and the generated certificates (client and server) expires in 3 years (1095 days).
 
 **vpn_configuration.json**
 
