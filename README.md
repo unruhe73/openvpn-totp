@@ -189,6 +189,6 @@ when a user's created, into `users.db` is stored its username, the creation Unix
 
 So no clear and ho hashed password is stored into it.
 
-The `is_active` field is set to **1** and indicate the username is active, if you set it to **0** you're disabling its access to the VPN, `disactived_timestamp` indicate Unix timestamp of its disactivated date and time. You can disactivate a user using the UserManagement Python class contained into the file `user_management_class.py` or updating directly the users.db by sqlite application.
+The `is_active` field is set to **1** and indicate the username is active, if you set it to **0** you're disabling its access to the VPN, `disactived_timestamp` indicate Unix timestamp of its disactivation date and time. You can disactivate a user using the UserManagement Python class contained into the file `user_management_class.py` or updating directly the users.db by sqlite application.
 
 When a user access to the VPN the `last_access_timestamp` field is upadated to the current Unix timestamp. As default the *disactived* and *last_access* are set to **0**. If `last_access_timestamp` field is **0**, than a username never connected or tried to connect but with wrong credentials and then never get the VPN access.
