@@ -151,7 +151,20 @@ Into the **/etc/openvpn** directory you're going to have the following file on t
 
     totp_verify.py
 
-If you're using **FreeBSD** copy totp_verify.freebsd.py into **/usr/local/etc/freebsd** and rename it as **totp_verify.py**
+If you're using **FreeBSD** copy totp_verify.freebsd.py into **/usr/local/etc/freebsd** and rename it as **totp_verify.py** and fix also the server.conf paths, use:
+
+    ca /usr/local/etc/openvpn/server/ca.crt
+    cert /usr/local/etc/openvpn/server/openvpn-server.crt
+    key /usr/local/etc/openvpn/server/openvpn-server.key
+    dh /usr/local/etc/openvpn/server/dh.pem
+
+in place of:
+
+    ca /etc/openvpn/server/ca.crt
+    cert /etc/openvpn/server/openvpn-server.crt
+    key /etc/openvpn/server/openvpn-server.key
+    dh /etc/openvpn/server/dh.pem
+
 
 **The sqlite databse of users.db**
 
