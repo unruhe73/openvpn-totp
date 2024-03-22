@@ -134,7 +134,7 @@ For the Linux *client* you need:
 
 `sqlite3`
 
-And the google-authenticato application installed.
+And the **google-authenticator** application installed.
 
 
 **openvpn server on Linux**
