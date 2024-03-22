@@ -89,3 +89,104 @@ The passoword is transformed according this formula:
 `hash(salt2 + hash(salt1 + password))`
 
 where *salt1* and *salt2* are random Fermat keys. Only if the user inser the correct password than the conversion matches the data into the database.
+
+Once certificates has been created you have to look for files to send to the users into the **users_file**. In this directory you're getting two subdirectories:
+
+`zip`
+
+and 
+
+`pdf`
+
+If you didn't configure the *mail* session into the file **vpn_configuration.json** and you won't use the `send_email.py` python script but you want to send an e-mail from your favourite e-mail client you need to get the ZIP and PDF password from the file **pdf_passwords_users_files.txt** into the **pdf** directory and send just the ZIP related file to the user. The ZIP file is, of course, into the **zip** directory.
+
+Anyway, also if you use the `send_email.py` python script (after you configured correctly mail parameters into the file **vpn_configuration.json**) to send the e-mail, the user's not getting the password to open the ZIP and PDF file, so you need to contact him or her and send them the password on a different channel, or writing a e-mail with your e-mail client later.
+
+Of course, you have to keep all these data away from the server. Execute all these commands in a Linux Desktop client.
+
+**Wanted Python libraries**
+
+For the openvpn *server* you need to install the following Python libraries:
+
+`pyotp`
+
+`pycryptodome`
+
+`sqlite3`
+
+For the Linux *client* you need:
+
+`csv`
+
+`cryptography`
+
+`pexpect`
+
+`pillow`
+
+`pycryptodome`
+
+`pyotp`
+
+`pypdf`
+
+`reportlab`
+
+`sqlite3`
+
+
+**openvpn server on Linux**
+
+Into **/etc/openvpn/server** directory you're going to have the following files on the openvpn server:
+
+`ca.crt`
+
+`dh.pem`
+
+`openvpn-server.crt`
+
+`openvpn-server.key`
+
+`server.conf`
+
+Into the **/etc/openvpn/users** directory you're going to have the following files on the openvpn server:
+
+`users.db`
+
+`myuser.crypted`
+
+Into the **/etc/openvpn** directory you're going to have the following file on the openvpn server:
+
+`totp_verify.py`
+
+If you're using **FreeBSD** copy totp_verify.freebsd.py into **/usr/local/etc/freebsd** and rename it as **totp_verify.py**
+
+**sqlite users.db**
+
+The database stores some information about the username into the users table. Here you are the SQL:
+
+`CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT,`
+
+`   creation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,`
+
+`    username TEXT UNIQUE,`
+
+`    salt1 TEXT,`
+
+`    salt2 TEXT,`
+
+`    hash TEXT,`
+
+`    is_active INTEGER,`
+
+`    disactived_timestamp TIMESTAMP DEFAULT 0,`
+
+`    last_access_timestamp TIMESTAMP DEFAULT 0)`
+
+when a user's created, into `users.db` is stored its username, the creation Unix timestamp, it's created 2 salts (*salt1* and *salt2*) to store hased form of the converted password accourding to the formula:
+
+`hash(salt2 + hash(salt1 + password))`
+
+The `is_active` field is set to **1** and indicate the username is active, if you set it to **0** you're disabling its access to the VPN, `disactived_timestamp` indicate Unix timestamp of its disactived timestamp. You can disactivate a user using the UserManagement Python class contained into the file `user_management_class.py`.
+
+When a user access to the VPN the `last_access_timestamp` field is upadated to the current Unix timestamp. As default the *disactived* and *last_access* are set to **0**. If `last_access_timestamp` field is **0**, than a username never connected or tried to connect but with wrong credentials and then never get the VPN access.
