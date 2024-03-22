@@ -10,28 +10,33 @@ But before this you have to compile a configuration. There is a **config** direc
 
 in the **active** configuration directory you're going to find the following files:
 
-`environment
-openvpn_users
-routes
-server.conf
-users.csv
-vars
-vpn_configuration.json
-`
+`environment`
+
+`openvpn_users`
+
+`routes`
+
+`server.conf`
+
+`users.csv`
+
+`vars`
+
+`vpn_configuration.json`
 
 Now here you are the files.
 
 **environment**
 
-`OPENVPN_REMOTE_SERVER="192.168.192.168"
+`OPENVPN_REMOTE_SERVER="192.168.192.168"`
 
-OPENVPN_REMOTE_PORT="7890"
+`OPENVPN_REMOTE_PORT="7890"`
 
-OPENVPN_PROTO="udp"
+`OPENVPN_PROTO="udp"`
 
-OPENVPN_NETWORK="192.168.254.0"
+`OPENVPN_NETWORK="192.168.254.0"`
 
-OPENVPN_NETMASK="255.255.255.0"`
+`OPENVPN_NETMASK="255.255.255.0"`
 
 In this file you can define the IP address of the remote server needed to the clients, the port and the protocol. The protocol has to be *udp* or *tcp*.
 OPENVPN_NETWORK and OPENVPN_NETMASK is the OpenVPN network and netmask that is the network needed to the VPN to work. Avoid it conflict with your router and local LAN network.
@@ -64,9 +69,9 @@ In this file you have some more configuration. You can find the SMTP server para
 
 In the software you get from here you can proceed to create the CA and the server certificate and configuration executing the **create_server_and_ca_certs.sh** bash script and then execute the **generate_single_client_cert.py** Python script to create single client certificate specifying the username. Suppose you have just one user of the VPN and the username is *myuser*, than you have to execute:
 
-`./create_server_and_ca_certs.sh
+`./create_server_and_ca_certs.sh`
 
-./generate_single_client_cert.py myuser`
+`./generate_single_client_cert.py myuser`
 
 But you can also insert all the usernames you need in the **config/default/openvpn_users** file and execute just the bash script **create_all_certs.sh**:
 
@@ -81,7 +86,6 @@ The first one contains the server configuration and the users file needed to be 
 
 The passoword is transformed according this formula:
 
-`hash(salt2 + hash(salt1 + password))
-`
+`hash(salt2 + hash(salt1 + password))`
 
 where *salt1* and *salt2* are random Fermat keys.
