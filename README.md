@@ -183,9 +183,11 @@ The database stores some information about the username into the users table. He
 
 `    last_access_timestamp TIMESTAMP DEFAULT 0)`
 
-when a user's created, into `users.db` is stored its username, the creation Unix timestamp, it's created 2 salts (*salt1* and *salt2*) to store hased form of the converted password accourding to the formula:
+when a user's created, into `users.db` is stored its username, the creation Unix timestamp, it's created 2 salts (*salt1* and *salt2*) to store hashed form of the converted password according to the formula:
 
 `hash(salt2 + hash(salt1 + password))`
+
+So no clear and ho hashed password is stored into it.
 
 The `is_active` field is set to **1** and indicate the username is active, if you set it to **0** you're disabling its access to the VPN, `disactived_timestamp` indicate Unix timestamp of its disactived timestamp. You can disactivate a user using the UserManagement Python class contained into the file `user_management_class.py`.
 
