@@ -1,3 +1,7 @@
+[![GitHub license](https://img.shields.io/badge/license-GPL-blue)](https://github.com/unruhe73/openvpn-totp/blob/main/LICENSE)
+[![Made with Python 3](https://img.shields.io/badge/python-3.x-powered)](https://www.python.org/)
+
+
 **OpenVPN TOTP**
 
 This is a possible way to setup an openvpn server with user, password and TOTP code to connect to the VPN.
