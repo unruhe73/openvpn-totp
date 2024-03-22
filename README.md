@@ -54,6 +54,22 @@ In this file you can associate, in a CSV format, username with real name and ema
 **vars**
 
 In this file you define the data of the Certification Authority and how many days the CA is valid and after how many days a client certificate's expiring.
+Here what need to be customized:
+
+    set_var EASYRSA_REQ_COUNTRY     "NATION"
+    set_var EASYRSA_REQ_PROVINCE    "Nation"
+    set_var EASYRSA_REQ_CITY        "DefaultCity"
+    set_var EASYRSA_REQ_ORG         "Default Certificate Authority"
+    set_var EASYRSA_REQ_CN          "Default CA"
+    set_var EASYRSA_REQ_EMAIL       "default@example.com"
+    set_var EASYRSA_REQ_OU          "Default Techadmin EASY CA"
+    set_var EASYRSA_KEY_SIZE        2048
+    set_var EASYRSA_ALGO            rsa
+    set_var EASYRSA_CA_EXPIRE       7500
+    set_var EASYRSA_CERT_EXPIRE     1095
+    set_var EASYRSA_NS_COMMENT      "Default Certificate Authority"
+
+This use a 2048 RSA key for the certificates. CA expires in 20 years (7500 days) and the certificate it generates expires in 3 years.
 
 **vpn_configuration.json**
 
