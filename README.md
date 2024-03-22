@@ -1,4 +1,4 @@
-[![GitHub license](https://img.shields.io/badge/license-GPL-blue)](https://github.com/unruhe73/openvpn-totp/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-AGPL-blue)](https://github.com/unruhe73/openvpn-totp/blob/main/LICENSE)
 [![Made with Python 3](https://img.shields.io/badge/python-3.x-powered)](https://www.python.org/)
 
 
@@ -14,33 +14,23 @@ But before this you have to compile a configuration. There is a **config** direc
 
 in the **active** configuration directory you're going to find the following files:
 
-`environment`
-
-`openvpn_users`
-
-`routes`
-
-`server.conf`
-
-`users.csv`
-
-`vars`
-
-`vpn_configuration.json`
+    environment
+    openvpn_users
+    routes
+    server.conf
+    users.csv
+    vars
+    vpn_configuration.json
 
 Now here you are the files.
 
 **environment**
 
-`OPENVPN_REMOTE_SERVER="192.168.192.168"`
-
-`OPENVPN_REMOTE_PORT="7890"`
-
-`OPENVPN_PROTO="udp"`
-
-`OPENVPN_NETWORK="192.168.254.0"`
-
-`OPENVPN_NETMASK="255.255.255.0"`
+    OPENVPN_REMOTE_SERVER="192.168.192.168"
+    OPENVPN_REMOTE_PORT="7890"
+    OPENVPN_PROTO="udp"
+    OPENVPN_NETWORK="192.168.254.0"
+    OPENVPN_NETMASK="255.255.255.0"
 
 In this file you can define the IP address of the remote server needed to the clients, the port and the protocol. The protocol has to be *udp* or *tcp*.
 OPENVPN_NETWORK and OPENVPN_NETMASK is the OpenVPN network and netmask that is the network needed to the VPN to work. Avoid it conflict with your router and local LAN network.
@@ -73,24 +63,23 @@ In this file you have some more configuration. You can find the SMTP server para
 
 In the software you get from here you can proceed to create the CA and the server certificate and configuration executing the **create_server_and_ca_certs.sh** bash script and then execute the **generate_single_client_cert.py** Python script to create single client certificate specifying the username. Suppose you have just one user of the VPN and the username is *myuser*, than you have to execute:
 
-`./create_server_and_ca_certs.sh`
-
-`./generate_single_client_cert.py myuser`
+    ./create_server_and_ca_certs.sh
+    ./generate_single_client_cert.py myuser
 
 But you can also insert all the usernames you need in the **config/default/openvpn_users** file and execute just the bash script **create_all_certs.sh**:
 
-`./create_all_certs.sh`
+    ./create_all_certs.sh
 
 After you executed the scripts you're getting the following directory:
 
-`openvpn
-users_file`
+    openvpn
+    users_file
 
 The first one contains the server configuration and the users file needed to be moved on the server. The subdirectory **users** into **openvpn** contains the users sqlite database and the crypted secret that generate the OTP code. Each user secret file is cpyptted using users password. No password is stored in the database. The information stored use a double salt storing.
 
 The passoword is transformed according this formula:
 
-`hash(salt2 + hash(salt1 + password))`
+    hash(salt2 + hash(salt1 + password))
 
 where *salt1* and *salt2* are random Fermat keys. Only if the user inser the correct password than the conversion matches the data into the database.
 
@@ -108,31 +97,21 @@ Of course, you have to keep all these data away from the server. Execute all the
 
 For the openvpn *server* you need to install the following Python libraries:
 
-`pyotp`
-
-`pycryptodome`
-
-`sqlite3`
+    pyotp
+    pycryptodome
+    sqlite3
 
 For the Linux *client* you need:
 
-`csv`
-
-`cryptography`
-
-`pexpect`
-
-`pillow`
-
-`pycryptodome`
-
-`pyotp`
-
-`pypdf`
-
-`reportlab`
-
-`sqlite3`
+    csv
+    cryptography
+    pexpect
+    pillow
+    pycryptodome
+    pyotp
+    pypdf
+    reportlab
+    sqlite3
 
 And the **google-authenticator** application installed.
 
@@ -141,53 +120,40 @@ And the **google-authenticator** application installed.
 
 Into **/etc/openvpn/server** directory you're going to have the following files on the openvpn server:
 
-`ca.crt`
-
-`dh.pem`
-
-`openvpn-server.crt`
-
-`openvpn-server.key`
-
-`server.conf`
+    ca.crt
+    dh.pem
+    openvpn-server.crt
+    openvpn-server.key
+    server.conf
 
 Into the **/etc/openvpn/users** directory you're going to have the following files on the openvpn server:
 
-`users.db`
-
-`myuser.crypted`
+    users.db
+    myuser.crypted
 
 Into the **/etc/openvpn** directory you're going to have the following file on the openvpn server:
 
-`totp_verify.py`
+    totp_verify.py
 
 If you're using **FreeBSD** copy totp_verify.freebsd.py into **/usr/local/etc/freebsd** and rename it as **totp_verify.py**
 
-**sqlite users.db**
+**The sqlite databse of users.db**
 
 The database stores some information about the username into the users table. Here you are the SQL:
 
-`CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT,`
-
-`   creation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,`
-
-`    username TEXT UNIQUE,`
-
-`    salt1 TEXT,`
-
-`    salt2 TEXT,`
-
-`    hash TEXT,`
-
-`    is_active INTEGER,`
-
-`    disactived_timestamp TIMESTAMP DEFAULT 0,`
-
-`    last_access_timestamp TIMESTAMP DEFAULT 0)`
+    CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT,
+       creation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        username TEXT UNIQUE,
+        salt1 TEXT,
+        salt2 TEXT,
+        hash TEXT,
+        is_active INTEGER,
+        disactived_timestamp TIMESTAMP DEFAULT 0,
+        last_access_timestamp TIMESTAMP DEFAULT 0)
 
 when a user's created, into `users.db` is stored its username, the creation Unix timestamp, it's created 2 salts (*salt1* and *salt2*) to store hashed form of the converted password according to the formula:
 
-`hash(salt2 + hash(salt1 + password))`
+    hash(salt2 + hash(salt1 + password))
 
 So no clear and ho hashed password is stored into it.
 
