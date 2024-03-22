@@ -88,4 +88,4 @@ The passoword is transformed according this formula:
 
 `hash(salt2 + hash(salt1 + password))`
 
-where *salt1* and *salt2* are random Fermat keys.
+where *salt1* and *salt2* are random Fermat keys. Only if the user inser the correct password than the conversion matches the data into the database.
