@@ -82,7 +82,7 @@ echo "remote-cert-tls server" >> $FILENAME
 echo "" >> $FILENAME
 echo "auth SHA512" >> $FILENAME
 echo "auth-nocache" >> $FILENAME
-echo "tls-version-min 1.2" >> $FILENAME
+echo "tls-version-min 1.3" >> $FILENAME
 echo "tls-cipher TLS-DHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256:TLS-DHE-RSA-WITH-AES-128-GCM-SHA256:TLS-DHE-RSA-WITH-AES-128-CBC-SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256" >> $FILENAME
 echo "resolv-retry infinite" >> $FILENAME
 echo "nobind" >> $FILENAME
@@ -94,4 +94,4 @@ echo "verb 4" >> $FILENAME
 echo "auth-user-pass" >> $FILENAME
 echo "static-challenge \"Please enter authenticator PIN:\" 0" >> $FILENAME
 
-echo "file generato: $FILENAME"
+echo "generated file: $FILENAME"
