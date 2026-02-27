@@ -8,9 +8,9 @@ This is a possible way to setup an openvpn server with user, password and TOTP c
 
 # Starting
 
-The first thing to do is to install the OpenVPN software, than a Certification Authorithy is needed. This because it has to sign the OpenVPN server certificate and the client certificates too.
+The first thing to do is to install the OpenVPN software, then a Certification Authorithy is needed. This because you need to sign the OpenVPN server certificate and then the client certificates for the users.
 
-But before this you have to compile a configuration. There is a **config** directory and into it you have the file **active_config** and the subdirectory **default**. The content of the **active_config** file is *default*. This content specify that into **config** directory you have another directory called exactly as it: **default**, where there are the VPN configuration files. You can have more configurations but in the current state development you can use just one of it and you have to specify which one into the **active_config** file that is the **active** configuration. If you want manage more configurations you have to clone more times the whole project in more directories. In the next software releases this could be managed in the same project directory with all certificates of the different configuration.
+Before to proceed, you have to put down a configuration. There is a **config** directory and into it you have the file **active_config** and the subdirectory **default**. The content of the **active_config** file is *default*. This content specify that into **config** directory you have another directory called exactly as it: **default**, where there are the VPN configuration files. You can have more configurations but in the current state development you can use just one of it and you have to specify which one into the **active_config** file that is the **active** configuration. If you want manage more configurations you have to clone more times the whole project in more directories. In the next software releases this could be managed in the same project directory with all certificates of the different configuration.
 
 in the **active** configuration directory you're going to find the following files:
 
@@ -109,7 +109,7 @@ Anyway, also if you use the `send_email.py` python script (after you configured 
 
 Of course, you have to keep all these data away from the server. Execute all these commands in a Linux Desktop client.
 
-# Thw required Python libraries
+# The required Python libraries
 
 For the openvpn *server* you need to install the following Python libraries:
 
