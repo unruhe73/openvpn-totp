@@ -79,12 +79,12 @@ I suggest to let unchanged the **config** section. With the *default* configurat
 
 # Creating the CA and server and client certificates
 
-In the software you get from here you can proceed to create the CA and the server certificate and configuration executing the **create_server_and_ca_certs.sh** bash script and then execute the **generate_single_client_cert.py** Python script to create single client certificate specifying the username. Suppose you have just one user of the VPN and the username is *myuser*, then you have to execute:
+You can proceed to create the CA, the server certificate and configuration executing the **create_server_and_ca_certs.sh** bash script and then executing the **generate_single_client_cert.py** Python script too to create a single client certificate specifying the username as parameter of the **generate_single_client_cert.py** script. Suppose you have just one user of the VPN and the username is *myuser*, then you have to execute:
 
     ./create_server_and_ca_certs.sh
     ./generate_single_client_cert.py myuser
 
-But you can also insert all the usernames you need in the **config/default/openvpn_users** file and execute just the bash script **create_all_certs.sh**:
+But you can also insert all the usernames you need in the **config/default/openvpn_users** file and then execute just the bash script **create_all_certs.sh**:
 
     ./create_all_certs.sh
 
@@ -93,7 +93,7 @@ After you executed the scripts you're getting the following directory:
     openvpn
     users_file
 
-The first one contains the server configuration and the users file needed to be moved on the server. The subdirectory **users** into **openvpn** contains the users sqlite database and the crypted secret that generate the OTP code. Each user secret file is cpyptted using users password. No password is stored in the database. The information stored use a double salt storing.
+The first one contains the server configuration and the files needed to be moved on the server. The subdirectory **users** into **openvpn** contains the users sqlite database and the crypted secret that generate the OTP code. Each user secret file is crypted using users password. No password is stored in the database. The information stored use a double salt storing.
 
 The passoword is transformed according this formula:
 
