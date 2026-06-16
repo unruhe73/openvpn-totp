@@ -49,7 +49,7 @@ In this file you have the OpenVPN server configuration that's going to be merged
 
 **users.csv**
 
-In this file you can associate, in a CSV format, username with real name and email of the users. This is not really necessary, but if you specify this information you can auto generate and send emails with the information to access to the VPN to the users you specify. The `sent_email` field tells if the email has been sent or not. If the value is **0** then the email will be sent if you're going to execute the send email python script, if it's **1** no email for this user's going to be sent.
+In this file you can associate, in a CSV format, username with real name and e-mail of the users. This is not really necessary, but if you specify this information you can auto generate and send emails with the information to access to the VPN to the users you specify. The `sent_email` field tells if the e-mail has been sent or not. If the value is **0** then the e-mail will be sent if you're going to execute the send e-mail python script, if it's **1** no e-mail for this user's going to be sent.
 
 **vars**
 
@@ -73,7 +73,7 @@ In this configuration, certificates use a 2048 RSA key, CA expires in 20 years (
 
 **vpn_configuration.json**
 
-In this file you have some more configuration. You can define the SMTP server parameters. But you don't need them if you don't want to send emails using the script. The **totp** section defines the information needed to create a QR code image useful to let it scan by an Authenticator app generator to produce the TOTP code to access the VPN later.
+In this file you have some more configuration. You can define the SMTP server parameters. But you don't need them if you don't want to send e-mails using the script. The **totp** section defines the information needed to create a QR code image useful to let it scan by an Authenticator app generator to produce the TOTP code to access the VPN later.
 
 I suggest to let unchanged the **config** section. With the *default* configuration you're going to have an **openvpn** directory that has to be copied to the server as it is, except for the **openvpn/client** one where you have the *OVPN* files. These files are the client files to use to connect to the VPN. This information will be compressed into a password protected ZIP file for all the users or just for the new users. The ZIP files contain: a *OVPN* file and a *PDF* file, that are considered as the credentials to access to the VPN: username, password and QR code. The *ZIP* and *PDF* file is protected from a password. The same password. More details later.
 
