@@ -75,7 +75,7 @@ In this configuration, certificates use a 2048 RSA key, CA expires in 20 years (
 
 In this file you have some more configuration. You can define the SMTP server parameters. But you don't need them if you don't want to send emails using the script. The **totp** section defines the information needed to create a QR code image useful to let it scan by an Authenticator app generator to produce the TOTP code to access the VPN later.
 
-I suggest to let unchanged the **config** section. With the *default* configuration you're going to have an **openvpn** directory to copy to the server as it is, except for the **openvpn/client** one where you have to *OVPN* files, the client files to use to connect to the VPN, but you need just to send the ZIP file to the user. The ZIP file's containing the *OVPN* file and the *PDF* file containing the credential to access to the VPN: username, password and QR code. The *ZIP* and *PDF* file is protected from a password. The same password. More details later.
+I suggest to let unchanged the **config** section. With the *default* configuration you're going to have an **openvpn** directory that has to be copied to the server as it is, except for the **openvpn/client** one where you have the *OVPN* files. These files are the client files to use to connect to the VPN. This information will be compressed into a password protected ZIP file for all the users or just for the new users. The ZIP files contain: a *OVPN* file and a *PDF* file, that are considered as the credentials to access to the VPN: username, password and QR code. The *ZIP* and *PDF* file is protected from a password. The same password. More details later.
 
 # Creating the CA and server and client certificates
 
