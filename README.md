@@ -49,7 +49,7 @@ In this file you have the OpenVPN server configuration that's going to be merged
 
 **users.csv**
 
-In this file you can associate, in a CSV format, username with real name and email of the users. This is not really necessary, but if you specify this information you can auto generate and send emails with the information to access to the VPN to the users you specify. The `sent_email` field tells if the email has been sent or not. If the value is **0** than the email will be sent if you're going to execute the send email python script, if it's **1** no email for this user.
+In this file you can associate, in a CSV format, username with real name and email of the users. This is not really necessary, but if you specify this information you can auto generate and send emails with the information to access to the VPN to the users you specify. The `sent_email` field tells if the email has been sent or not. If the value is **0** then the email will be sent if you're going to execute the send email python script, if it's **1** no email for this user.
 
 **vars**
 
@@ -77,7 +77,7 @@ In this file you have some more configuration. You can find the SMTP server para
 
 # Creating the CA and server and client certificates
 
-In the software you get from here you can proceed to create the CA and the server certificate and configuration executing the **create_server_and_ca_certs.sh** bash script and then execute the **generate_single_client_cert.py** Python script to create single client certificate specifying the username. Suppose you have just one user of the VPN and the username is *myuser*, than you have to execute:
+In the software you get from here you can proceed to create the CA and the server certificate and configuration executing the **create_server_and_ca_certs.sh** bash script and then execute the **generate_single_client_cert.py** Python script to create single client certificate specifying the username. Suppose you have just one user of the VPN and the username is *myuser*, then you have to execute:
 
     ./create_server_and_ca_certs.sh
     ./generate_single_client_cert.py myuser
@@ -97,7 +97,7 @@ The passoword is transformed according this formula:
 
     hash(salt2 + hash(salt1 + password))
 
-where *salt1* and *salt2* are random Fermat keys. Only if the user inser the correct password than the conversion matches the data into the database.
+where *salt1* and *salt2* are random Fermat keys. Only if the user inser the correct password then the conversion matches the data into the database.
 
 Once certificates has been created you have to look for files to send to the users into the **users_file**. In this directory you're getting two subdirectories:
 
@@ -187,7 +187,7 @@ So no clear and ho hashed password is stored into it.
 
 The `is_active` field is set to **1** and indicate the username is active, if you set it to **0** you're disabling its access to the VPN, `disactived_timestamp` indicate Unix timestamp of its disactivation date and time. You can disactivate a user using the UserManagement Python class contained into the file `user_management_class.py` or updating directly the *users.db* file by sqlite application.
 
-When a user access to the VPN the `last_access_timestamp` field is upadated to the current Unix timestamp. As default the *disactived* and *last_access* are set to **0**. If `last_access_timestamp` field is **0**, than a user with that username never connected or maybe he/she tried to connect but with wrong credentials and then never get the VPN access.
+When a user access to the VPN the `last_access_timestamp` field is upadated to the current Unix timestamp. As default the *disactived* and *last_access* are set to **0**. If `last_access_timestamp` field is **0**, then a user with that username never connected or maybe he/she tried to connect but with wrong credentials and then never get the VPN access.
 
 # How a user has to connect to the openVPN server
 
